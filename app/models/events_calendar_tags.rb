@@ -69,7 +69,7 @@ module EventsCalendarTags
   tag 'event:link' do |tag|
     event = tag.locals.event
     link_text = tag.attr['text'] || event.name
-    link_str = event_path(:year => event.start_time.year, :month => event.start_time.month, :day => event.start_time.day, :id => event.to_param)
+    link_str = event_path(:year => event.date.year, :month => event.date.month, :day => event.date.day, :id => event.to_param)
     "<a href=\"#{link_str}\">#{link_text}</a>"
   end
 
