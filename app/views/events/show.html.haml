@@ -1,0 +1,16 @@
+- @title = @event.name
+
+%dl.event
+  %dt= h @event.name
+  - if @event.category
+    %dd.category= h @event.category
+  - if @event.location
+    %dd.location= h @event.location
+  - unless @event.time.blank?
+    %dd.time= h @event.time
+  %dd.description= @event.description_html || '&nbsp;'
+
+-#
+  Supply additional page parts as required by your design
+  - content_for :sidebar do
+    <r:snippet name='sidebar' />
