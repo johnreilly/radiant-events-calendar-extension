@@ -47,6 +47,31 @@ module EventsCalendarTags
     event = tag.locals.event
     event.name
   end
+  
+  desc %{
+    Renders the path for the current event.
+    Takes the form of <code>/events/:year/:month/:day/:id</code>
+  }
+  tag 'event:path' do |tag|
+    event = tag.locals.event
+    event_path(:year => event.start_time.year, :month => event.start_time.month, :day => event.start_time.day, :id => event.to_param)
+  end
+  
+  desc %{
+    Renders a link for the current event.
+    The link text defaults to the event name, but can be set using the <code>text</code> attribute
+    Takes the form of <code><a href="/events/:year/:month/:day/:id">[Event Name]</a></code>
+    
+    *Usage:*
+    <pre><code><r:event:link /></code></pre>
+    <pre><code><r:event:link text="Click Here" /></code></pre>
+  }
+  tag 'event:link' do |tag|
+    event = tag.locals.event
+    link_text = tag.attr['text'] || event.name
+    link_str = event_path(:year => event.start_time.year, :month => event.start_time.month, :day => event.start_time.day, :id => event.to_param)
+    "<a href=\"#{link_str}\">#{link_text}</a>"
+  end
 
   desc %{
     Renders the date for the current event.
