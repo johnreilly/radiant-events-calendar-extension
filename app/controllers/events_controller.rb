@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  radiant_layout 'Normal'
+  radiant_layout 'Events'
   no_login_required
 
   def index
